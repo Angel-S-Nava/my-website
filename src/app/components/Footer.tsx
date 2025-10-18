@@ -24,7 +24,7 @@ export default function Footer(): JSX.Element {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <h3 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">
-              [Angel Nava]
+              Angel Nava
             </h3>
             <p className="text-text/70 leading-relaxed">
               Freelancer specialized in digital marketing and web development. I help businesses and personal brands enhance their online presence with effective and personalized solutions.
@@ -36,7 +36,6 @@ export default function Footer(): JSX.Element {
             <ul className="space-y-2">
               {navLinks.map((link) => (
                 <li key={link.name}>
-                  {/* anchor normal — usa scroll-behavior: smooth en globals.css */}
                   <a href={link.href} className="text-text/70 hover:text-accent transition-colors">
                     {link.name}
                   </a>
