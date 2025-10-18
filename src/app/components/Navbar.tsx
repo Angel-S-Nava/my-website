@@ -32,12 +32,10 @@ export default function Navbar(): JSX.Element {
       return
     }
 
-    // Navegación interna suave: intentamos scroll programático para consistencia
     const el = document.querySelector(href)
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' })
     } else {
-      // fallback — navegar al hash para que browser lo maneje
       window.location.hash = href.startsWith('#') ? href : `#${href}`
     }
   }
@@ -59,7 +57,7 @@ export default function Navbar(): JSX.Element {
               }}
               className="text-xl md:text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent hover:opacity-80 transition-opacity"
             >
-              [Angel Nava]
+              Angel Nava
             </a>
           </div>
 
