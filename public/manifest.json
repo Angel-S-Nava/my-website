@@ -1,0 +1,20 @@
+{
+  "name": "Nava Marketing",
+  "short_name": "navamkt",
+  "description": "E-commerce Digital Marketing and Full-Stack Development.",
+  "lang": "en",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#18181B",
+  "theme_color": "#5B21B6",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon",
+      "purpose": "any"
+    }
+  ]
+}
