@@ -1,8 +1,9 @@
 // app/api/contact/route.ts
-export const runtime = "nodejs";
+export const runtime = "nodejs"; // explícito: función serverless Node
 
 import { NextResponse } from "next/server";
 import { createTransporter } from "@/lib/mail";
+import nodemailer from "nodemailer";
 
 type Body = {
   name?: string;
@@ -46,7 +47,6 @@ let transporterVerified = false;
 
 export async function POST(req: Request) {
   try {
-    // --- DEBUG: qué variables están presentes (no imprimimos valores) ---
     const watched = ["CONTACT_DESTINATION_EMAIL", "SMTP_HOST", "SMTP_USER", "SMTP_PASS", "SMTP_PORT", "SMTP_SECURE"];
     const varsStatus = watched.reduce<Record<string, boolean>>((acc, k) => {
       acc[k] = Boolean(process.env[k]);
@@ -54,14 +54,15 @@ export async function POST(req: Request) {
     }, {});
     console.log("[contact] env status:", varsStatus);
 
-    const missing = Object.entries(varsStatus).filter(([k, v]) => k === "CONTACT_DESTINATION_EMAIL" ? !v : false).map(([k]) => k);
-    // Si falta la variable obligatoria, devolvemos 500 con info de debug (sin exponer secretos)
+    const missing = Object.entries(varsStatus)
+      .filter(([k, v]) => (k === "CONTACT_DESTINATION_EMAIL" ? !v : false))
+      .map(([k]) => k);
     if (missing.length > 0) {
       console.error("[contact] Missing required env var(s):", missing);
       return NextResponse.json({ error: "CONTACT_DESTINATION_EMAIL not configured on server.", missing }, { status: 500 });
     }
 
-    // rate limit simple
+    // Rate limit en memoria (nota: no persistente entre instancias)
     const ip = getClientIp(req);
     const now = Date.now();
     const entry = ipMap.get(ip);
@@ -80,7 +81,6 @@ export async function POST(req: Request) {
 
     const body: Body = await req.json();
 
-    // validación mínima
     if (!body.name || !body.email || !body.subject || !body.message) {
       return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
     }
@@ -119,10 +119,6 @@ ${body.message}
 
     const info = await transporter.sendMail(mailOptions);
 
-    // Opcional: previewUrl si Ethereal usado en dev
-    // @ts-ignore
-    const nodemailer = require("nodemailer");
-    // @ts-ignore
     const preview = nodemailer.getTestMessageUrl ? nodemailer.getTestMessageUrl(info) : undefined;
 
     console.log("[contact] mail sent info", { messageId: info?.messageId, preview });
