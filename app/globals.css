@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 217 33% 17%;
+    --secondary-bg: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 217 33% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 217 33% 17%;
+    --primary: 271 69% 51%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 187 85% 43%;
+    --secondary-foreground: 217 33% 17%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 187 85% 43%;
+    --accent-foreground: 217 33% 17%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 271 69% 51%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --secondary-bg: 217 33% 17%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 271 69% 51%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 187 85% 43%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 218 11% 65%;
+    --accent: 187 85% 43%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 271 69% 51%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* rotation for details arrow (no JS) */
+details summary .arrow {
+  transition: transform .18s ease-in-out;
+  transform-origin: center;
+}
+
+/* when open, rotate */
+details[open] summary .arrow {
+  transform: rotate(90deg);
+}
+
+/* subtle open animation */
+details > div {
+  transition: opacity .18s ease, transform .18s ease;
+}
+details:not([open]) > div {
+  opacity: 0;
+  transform: translateY(-6px);
+  height: 0; /* not perfect for dynamic height but acceptable for most content */
+}
+details[open] > div {
+  opacity: 1;
+  transform: translateY(0);
+  height: auto;
+}

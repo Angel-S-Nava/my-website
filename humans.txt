@@ -1,0 +1,8 @@
+/* TEAM */
+Developer: Ángel Nava
+Site: https://navamkt.com
+Contact: angelnavafiero@gmail.com
+
+/* THANKS */
+Built with: Next.js, Tailwind and other ui libraries
+Last updated: 2025-11-27
