@@ -1,6 +1,6 @@
 {
     "functions": {
-    "api/contact/route.js": {
+    "app/api/contact/route.ts": {
         "memory": 1024,
         "maxDuration": 10
     }
