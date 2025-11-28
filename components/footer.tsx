@@ -67,7 +67,7 @@ export function Footer() {
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="https://www.tiktok.com/@angelsantiagonava?_r=1&_t=ZS-91jF2hU57VH"
+                href="https://www.tiktok.com/@navamkt"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -89,7 +89,7 @@ export function Footer() {
                 <Linkedin className="h-5 w-5" />
               </a>*/}
               <a
-                href="https://youtube.com"
+                href="https://www.youtube.com/@navamkt"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
